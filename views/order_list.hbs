@@ -1,0 +1,198 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+	<div class="card-box mb-30">
+
+		<div class="pb-20">
+			<table class="table hover multiple-select-row data-table-export nowrap">
+				<thead>
+					<tr></tr>
+					<tr>
+						<th>No</th>
+						<th>Date</th>
+						<th>Address</th>
+						<th>Pincode</th>
+						<th>Mobile</th>
+						<th>Amount</th>
+						<th>Payment</th>
+						<th>Status</th>
+						<th></th>
+						<th>Action</th>
+
+
+					</tr>
+				</thead>
+				<tbody>
+					{{#each orders}}
+					<tr>
+						<td>{{add @index '1'}}</td>
+						<td>{{this.date}}</td>
+						<td>{{this.delivaryDetails.address}}</td>
+						<td>{{this.delivaryDetails.pincode}}</td>
+						<td>{{this.delivaryDetails.mobile}}</td>
+						<td>{{this.totalAmount}}</td>
+						<td>{{this.paymentMethod}}</td>
+						<td>{{this.status}}</td>
+						<td>
+							<a href="/view_order_product/{{this._id}}" class="btn btn-primary">View Products</a>
+						</td>
+
+						<td><button class="btn btn-danger"
+								onclick="document.getElementById('{{this._id}}11').style.display='flex'">Remove</button>
+
+							<div id="{{this._id}}11" onclick="document.getElementById('{{this._id}}11').style.display='none'" style="align-items: center;" class="modal">
+								<span onclick="document.getElementById('{{this._id}}11').style.display='none'"
+									class="close" title="Close Modal" hidden>&times;</span>
+								<form class="modal-content" action="/order_list">
+									<div class="container inside">
+										{{!-- <h1>Delete Account</h1> --}}
+										<p class="marginleft">Are you sure you want to Remove this?</p>
+
+										<div class="clearfix">
+											<a href="/order_list" class="cancelbtn btn2 btn">Cancel</button>
+												<a href="/delete_order/{{this._id}}"
+													class="deletebtn btn2 btn btn-danger" type="btn-apply">Remove</a>
+										</div>
+									</div>
+								</form>
+							</div>
+						</td>
+					</tr>
+
+					{{/each}}
+
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+
+<!-- Datatable Setting js -->
+<script src="/vendors/scripts/datatable-setting.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+{{!-- // modal --}}
+
+
+<style>
+	button:hover {
+		opacity: 1;
+	}
+
+	.btn {
+		margin-top: 8px;
+	}
+
+	.pb-20 {
+		width: 100%;
+		overflow-x: auto;
+	}
+
+
+
+	.inside {
+		margin-top: 14px;
+	}
+
+	.modal-content {
+		height: 122px;
+		max-width: 300px;
+		
+	}
+
+	/* Float cancel and delete buttons and add an equal width */
+
+
+	/* Add a color to the cancel button */
+	.cancelbtn {
+		background-color: #ccc;
+		color: black;
+		width: 120px;
+		margin-left: 5px;
+	}
+
+	/* Add a color to the delete button */
+	.deletebtn {
+		background-color: #f44336;
+		width: 120px;
+		margin-left: 10px;
+	}
+
+
+
+	/* The Modal (background) */
+	.modal {
+		display: none;
+		/* Hidden by default */
+		position: fixed;
+		/* Stay in place */
+		z-index: 1;
+		/* Sit on top */
+		left: 0;
+		top: 0;
+		width: 100%;
+		/* Full width */
+		height: 100vh;
+		/* Full height */
+		overflow: auto;
+		/* Enable scroll if needed */
+		background-color: #42444872;
+		padding-top: 50px;
+		justify-content: center;
+	}
+
+	/* Modal Content/Box */
+	.modal-content {
+		
+		/* Style the horizontal ruler */
+		hr {
+			border: 1px solid #f1f1f1;
+			margin-bottom: 25px;
+		}
+
+		/* The Modal Close Button (x) */
+		.close {
+			position: absolute;
+			right: 35px;
+			top: 15px;
+			font-size: 40px;
+			font-weight: bold;
+			color: #f1f1f1;
+		}
+
+		.close:hover,
+		.close:focus {
+			color: #f44336;
+			cursor: pointer;
+		}
+
+		/* Clear floats */
+		.clearfix::after {
+			content: "";
+			clear: both;
+			display: table;
+		}
+
+		/* Change styles for cancel button and delete button on extra small screens */
+		@media screen and (max-width: 300px) {
+
+			.cancelbtn,
+			.deletebtn {
+				width: 100%;
+			}
+		}
+</style>

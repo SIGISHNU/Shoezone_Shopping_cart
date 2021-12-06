@@ -1,0 +1,97 @@
+<div class="container container1">
+	<div class="screen">
+		<div class="screen__content " style="margin-top: -134px;">
+			<form class="login" action="/signup" method="POST" id="form_id">
+				<img src="../images/logo4548.png" class="logo">
+				<div class="login__field">
+					<i class="login__icon fas fa-user"></i>
+					<input type="text" class="login__input" placeholder="User name" name="name">
+				</div>
+				<div class="login__field">
+					<i class="login__icon fas fa-lock"></i>
+					<input type="password" class="login__input" placeholder="Password" name="password">
+				</div>
+				<div class="login__field">
+					<i class="login__icon fas fa-user"></i>
+					<input type="number" class="login__input" placeholder="Mobile" name="mobile">
+					<input type="hidden" value="true" name="block">
+
+
+				</div>
+				{{#if mobilenumErr}}
+				<p style="color: red;" >Mobile number already exists...</p>
+				{{/if}}
+				<div class="login__field">
+					<i class="login__icon fas fa-user"></i>
+					<input type="email" class="login__input" placeholder="Email" name="email">
+				</div>
+				<button class="button login__submit" style="margin-top: -9px;">
+					<span class="button__text">Sign up</span>
+					<i class="button__icon fas fa-chevron-right"></i>
+				</button>
+			</form>
+
+
+			<div class="social-login">
+				<div class="social-icons">
+					<a href="#" class="social-login__icon fab fa-instagram"></a>
+					<a href="#" class="social-login__icon fab fa-facebook"></a>
+					<a href="#" class="social-login__icon fab fa-twitter"></a>
+				</div>
+			</div>
+		</div>
+		<div class="screen__background">
+			{{!-- <span class="screen__background__shape screen__background__shape4"></span> --}}
+			<span class="screen__background__shape screen__background__shape3"></span>
+			<span class="screen__background__shape screen__background__shape2"></span>
+			<span class="screen__background__shape screen__background__shape1"></span>
+		</div>
+	</div>
+</div>
+
+
+
+ <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/jquery.validate.js"></script>
+
+<script>
+	$(document).ready(function(){
+		$("#form_id").validate({
+			rules:{
+				name:{
+					required:true,
+					minlength:3
+				},
+				password:{
+					required:true,
+					minlength:3
+				},
+				mobile:{
+					required:true,
+					minlength:10
+				},
+				email:{
+					required:true
+				}
+			},
+			messages:{
+				name:"Enter Your Name",
+				password:"Enter password",
+				mobile:"Enter Mobile Number",
+				email:"Enter Your  Email"
+
+
+
+			}
+		})
+	})
+
+	
+</script>
+
+<style>
+	.error{
+		color: red;
+	}
+</style>

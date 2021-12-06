@@ -1,0 +1,117 @@
+<div class="mobile-menu-overlay"></div>
+
+<div class="main-container">
+	<div class="pd-ltr-20 xs-pd-20-10">
+		<div class="min-height-200px">
+			<div class="page-header">
+				<div class="row">
+					<div class="col-md-6 col-sm-12">
+						<div class="title">
+							<h4>View User</h4>
+						</div>
+						<nav aria-label="breadcrumb" role="navigation">
+							<ol class="breadcrumb">
+
+							</ol>
+						</nav>
+					</div>
+					<div class="col-md-6 col-sm-12 text-right">
+						<div class="dropdown">
+
+							<div class="dropdown-menu dropdown-menu-right">
+								<a class="dropdown-item" href="#">Export List</a>
+								<a class="dropdown-item" href="#">Policies</a>
+								<a class="dropdown-item" href="#">View Assets</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Simple Datatable start -->
+
+			<!-- Checkbox select Datatable End -->
+			<!-- Export Datatable start -->
+			<div class="card-box mb-30">
+				{{!-- <div class="pd-20">
+					<h4 class="text-blue h4">Data Table with Export Buttons</h4>
+				</div> --}}
+				<div class="pb-20">
+
+					<table class="table hover multiple-select-row data-table-export nowrap">
+					
+						<thead>
+							<tr>
+								<hr>
+							</tr>
+
+							<tr>
+								<th class="table-plus datatable-nosort">No</th>
+								<th>Name</th>
+								<th>Action</th>
+
+
+
+
+							</tr>
+						</thead>
+						<tbody>
+
+							<tr>
+
+								<td>
+									<h4>1</h4>
+								</td>
+								<td>
+									<h4>TOTAL ORDERS REPORT</h4>
+								</td>
+								<td><a href="/admin/order_report" class="btn btn-info">View</a></td>
+							</tr>
+							<tr>
+								<td>
+									<h4>2</h4>
+								</td>
+								<td>
+									<h4>TOTAL OUT OF STOCK PRODUCTS</h4>
+								</td>
+								<td><a href="/admin/out_of_stock_product" class="btn btn-info">View</a></td>
+
+							</tr>
+							<tr>
+								<td>
+									<h4>3</h4>
+								</td>
+								<td>
+									<h4>SELECT ORDERS LIST WITH DATE</h4>
+								</td>
+								<td><a href="/admin/total_orders_with_date" class="btn btn-info">View</a></td>
+
+							</tr>
+
+
+
+
+
+
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<!-- Export Datatable End -->
+		</div>
+
+
+
+	</div>
+</div>
+<!-- js -->
+<script src="/vendors/scripts/core.js"></script>
+<script src="/vendors/scripts/script.min.js"></script>
+<script src="/vendors/scripts/process.js"></script>
+<script src="/vendors/scripts/layout-settings.js"></script>
+<script src="/src/plugins/datatables/js/jquery.dataTables.min.js"></script>
+<script src="/src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
+<script src="/src/plugins/datatables/js/dataTables.responsive.min.js"></script>
+<script src="/src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
+<!-- buttons for Export datatable -->
+
+<script src="/vendors/scripts/datatable-setting.js"></script>

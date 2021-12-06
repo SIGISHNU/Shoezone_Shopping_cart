@@ -1,0 +1,590 @@
+
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<!--bottom-header-->
+<!--banner-starts-->
+
+{{#if banner}}
+<div class="w3-content w3-section" style="max: width 100%;">
+	{{#each banner}}
+	<img class="mySlides" src="/banner/{{this._id}}__1.jpg" style="width:100%;max-height: 400px;">
+	{{/each}}
+</div>
+{{else}}
+<div class="w3-content w3-section" style="max: width 100%;">
+
+	<img class="mySlides"
+		src="https://themeforest.img.customer.envatousercontent.com/files/273990322/shoes-preview-new.__large_preview.jpg?auto=compress%2Cformat&q=80&fit=crop&crop=top&max-h=8000&max-w=590&s=bf288a305ed7299daf08e32965e5d8e1"
+		style="width:100%;max-height: 400px;">
+
+</div>
+{{/if}}
+
+
+<!--banner-ends-->
+<!--Slider-Starts-Here-->
+<script src="/js/responsiveslides.min.js"></script>
+
+<!--start-banner-bottom-->
+
+<div class="">
+	<div class="Newariivals">
+		<br>
+		<center>
+			<h1 style="font-family:algerian;">NEW ARRIVALS</h1>
+		</center>
+	</div>
+</div>
+
+<!--end-banner-bottom-->
+
+<!--start-shoes-->
+<div class="container">
+
+	{{#if userloggedIn}}
+
+	<div class="row " >
+
+		{{#each newProduct}}
+
+		<div class=" col-md-3" style="margin: auto;">
+
+			<div class="card card-product-grid" style="margin-top: 30px;">
+				<a href="/single_view/{{this._id}}" class="img-wrap"> <img style="height: auto;width: 100%;"
+						src="/product_images/{{this._id}}__1.jpg"> </a>
+				<figcaption class="info-wrap mt-5">
+
+					<a style="font-weight: bolder;" href="../single_view.hbs" class="title ">{{this.name}}</a>
+					<a href="../single_view.hbs" class="title">{{this.discription}}</a>
+					{{#gt this.quantity '0'}}
+					<p class="glyphicon glyphicon-leaf" style="color: green;     margin-left: 14px;">in stock</p>
+
+					{{else}}
+					<p class="glyphicon glyphicon-leaf" style="color: rgb(221, 17, 17);     margin-left: 14px;">out of
+						stock</p>
+					{{/gt}}
+					<br>
+					<button class="btn-Link" onclick="favlist('{{this._id}}')"><svg
+							style="color: red;margin-left: 11px;margin-top: -2px;width: 16px;"
+							xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+							class="bi bi-heart-fill" viewBox="0 0 16 16">
+							<path fill-rule="evenodd"
+								d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+						</svg>
+					</button>
+			</div>
+			<br>
+			{{#if this.offer}}
+			<div class="price" style="margin-top: -18px;">₹ {{this.Price}} <span
+					style="padding-left: 10px; color: darkgray;">₹
+					<s class="ml">{{this.Oldprice}}</s></span><span
+					style="color: green; color: green; margin-left: 17px;border: inset;">{{this.offer}} %
+				</span>
+				{{else}}
+				<div class="price" style="margin-top: -18px;">₹ {{this.Price}} <span
+						style="padding-left: 10px; color: darkgray;">₹
+						<s class="ml">3000</s></span>
+
+					{{/if}}
+
+					<div class="buttonss">
+						{{#gt this.quantity "0"}}
+						<a style="" class="btn btn-success" href="/buy_now/{{this._id}}">Buy Now</a>
+						{{else}}
+						<a style="" class="btn btn-success"
+							onclick="document.getElementById('modal').style.display='block'">Buy Now</a>
+
+						<div id="modal" style="align-items: center;" class="modal">
+							<span onclick="document.getElementById('modal').style.display='none'" class="close"
+								title="Close Modal">&times;</span>
+							<form class="modal-content" action="/">
+								<div class="container">
+									<h4 class="text">!!! This item is out of stock !!!</h4>
+									<div class="clearfix">
+									</div>
+								</div>
+							</form>
+						</div>
+						{{/gt}}
+
+						{{#gt this.quantity "0"}}
+						{{#viewcartbutton ../product this._id this.Price }}
+						{{/viewcartbutton}}
+						{{else}}
+
+						<a style="" class="btn btn-primary"
+							onclick="document.getElementById('modal').style.display='block'">Add to Cart</a>
+
+						<div id="modal" style="align-items: center;" class="modal">
+							<span onclick="document.getElementById('modal').style.display='none'" class="close"
+								title="Close Modal">&times;</span>
+							<form class="modal-content" action="/">
+								<div class="container">
+									<h4 class="text">!!! This item is out of stock !!!</h4>
+									<div class="clearfix">
+									</div>
+								</div>
+							</form>
+						</div>
+						{{/gt}}
+					</div>
+					</figcaption>
+				</div>
+			</div>
+			{{/each}}
+		</div>
+	</div>
+</div>
+{{/if}}
+
+
+<div class="container">
+
+	{{#if logginErr}}
+
+	<div class="row">
+
+		{{#each newProduct}}
+
+		<div class=" col-md-3">
+
+
+			<div class="card card-product-grid" style="margin-top: 30px;">
+				<a href="/login" class="img-wrap"> <img style="height: 277px;width: 276px;"
+						src="/product_images/{{this._id}}__1.jpg"> </a>
+				<figcaption class="info-wrap mt-5">
+					<a style="font-weight: bolder;" href="../single_view.hbs" class="title">{{this.name}}</a>
+					{{#gt this.quantity "0"}}
+					<p class="glyphicon glyphicon-leaf" style="color: green;     margin-left: 14px;">in stock</p>
+
+					{{else}}
+					<p class="glyphicon glyphicon-leaf" style="color: rgb(238, 18, 18);     margin-left: 14px;">out
+						of
+						stock</p>
+
+					{{/gt}}
+
+					<a href="/login" class="title">{{this.discription}}</a>
+					<br>
+					<br>
+					{{#if this.offer}}
+					<div class="price" style="margin-top: -18px;">₹ {{this.Price}} <span
+							style="padding-left: 10px; color: darkgray;">₹
+							<s class="ml">{{this.Oldprice}}</s></span><span
+							style="color: green; color: green; margin-left: 17px;border: inset;">{{this.offer}} %
+						</span>
+						{{else}}
+						<div class="price" style="margin-top: -18px;">₹ {{this.Price}} <span
+								style="padding-left: 10px; color: darkgray;">₹
+								<s class="ml">3000</s></span>
+						</div>
+
+						{{/if}}
+						<div class="buttonss">
+							{{#gt this.quantity "0"}}
+							<a style="" class="btn btn-success" href="/login?proId={{this._id}}&token=guestToBuyNow">Buy
+								Now</a>
+							{{else}}
+							<a style="" class="btn btn-success"
+								onclick="document.getElementById('modal').style.display='block'">Buy Now</a>
+
+							<div id="modal" style="align-items: center;" class="modal">
+								<span onclick="document.getElementById('modal').style.display='none'" class="close"
+									title="Close Modal">&times;</span>
+								<form class="modal-content" action="/">
+									<div class="container">
+										<h4 class="text">!!! This item is out of stock !!!</h4>
+
+										<div class="clearfix">
+										</div>
+									</div>
+								</form>
+							</div>
+							{{/gt}}
+
+
+							{{#gt this.quantity "0"}}
+							<a href="/login?id={{this._id}}&Price={{this.Price}}&token=guestToAddToCart"><button
+									type="submit" class="btn btn-primary">Add to
+									Cart</button></a>
+
+							{{else}}
+							<a style="" class="btn btn-primary"
+								onclick="document.getElementById('modal').style.display='block'">Add to Cart</a>
+
+							<div id="modal" style="align-items: center;" class="modal">
+								<span onclick="document.getElementById('modal').style.display='none'" class="close"
+									title="Close Modal">&times;</span>
+								<form class="modal-content" action="/">
+									<div class="container">
+										<h4 class="text">!!! This item is out of stock !!!</h4>
+										<div class="clearfix">
+										</div>
+									</div>
+								</form>
+							</div>
+
+							{{/gt}}
+
+						</div>
+				</figcaption>
+			</div>
+
+		</div>
+		{{/each}}
+	</div>
+</div>
+{{/if}}
+
+<!--start-footer-->
+<div class="footer">
+	<div class="container">
+		<div class="footer-top">
+
+
+			<div class="clearfix"> </div>
+			<div id="snackbar">Item added to cart..</div>
+			<div id="favsnackbar">Item added to favourite..</div>
+		</div>
+	</div>
+</div>
+<!--end-footer-->
+
+<!--end-footer-text-->
+<div class="footer-text">
+	<div class="container">
+		<div class="footer-main">
+			<h3>CONTACT US</h3>
+			<ul>
+				<li><a></a>www.sigishnu0@gmail.com</li>
+				<li><a></a>9544180709</li>
+				<li><a></a>Shoezone pvt ltd calicut , kerala</li>
+
+			</ul>
+			<p class="footer-class">© 2021 ShoeZone All Rights Reserved | Design by <a href="http://w3layouts.com/"
+					target="_blank">SIGISHNU</a> </p>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			/*
+			var defaults = {
+					containerID: 'toTop', // fading element id
+				containerHoverID: 'toTopHover', // fading element hover id
+				scrollSpeed: 1200,
+				easingType: 'linear' 
+				};
+			*/
+
+			$().UItoTop({ easingType: 'easeOutQuart' });
+
+		});
+	</script>
+	<a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;">
+		</span></a>
+</div>
+
+<!--end-footer-text-->
+
+
+<script>
+
+	function addToCart(proId, Price) {
+		$.ajax({
+			url: '/add_cart/' + proId + '/' + Price,
+			method: 'get',
+			success: (response) => {
+				if (response.status) {
+					let count = $('#cart_count').html()
+					count = parseInt(count) + 1
+					$("#cart_count").html(count)
+
+
+				}
+
+			}
+		})
+	}
+
+</script>
+
+
+<script>
+	function myFunction() {
+		var x = document.getElementById("snackbar");
+		x.className = "show";
+		setTimeout(function () {
+			x.className = x.className.replace("show", "");
+		}, 3000);
+
+
+
+	}
+</script>
+
+
+<script>
+
+	function favlist(proId) {
+		$.ajax({
+			url: '/wishlist/' + proId,
+			method: 'post',
+			success: (response) => {
+				if (response.status) {
+
+					var x = document.getElementById("favsnackbar");
+					x.className = "show1";
+					setTimeout(function () {
+						x.className = x.className.replace("show1", "");
+					}, 3000);
+
+
+				}
+
+
+			}
+
+		})
+	}
+
+</script>
+
+
+<script>
+	var myIndex = 0;
+	carousel();
+
+	function carousel() {
+		var i;
+		var x = document.getElementsByClassName("mySlides");
+		for (i = 0; i < x.length; i++) {
+			x[i].style.display = "none";
+		}
+		myIndex++;
+		if (myIndex > x.length) { myIndex = 1 }
+		x[myIndex - 1].style.display = "block";
+		setTimeout(carousel, 2000); // Change image every 2 seconds
+	}
+</script>
+
+{{!-- // modal --}}
+
+<style>
+	/* The Modal (background) */
+	.modal {
+		display: none;
+		/* Hidden by default */
+		position: fixed;
+		/* Stay in place */
+		z-index: 1;
+		/* Sit on top */
+		left: 0;
+		top: 0;
+		width: 100%;
+		/* Full width */
+		height: 100vh;
+		/* Full height */
+		overflow: auto;
+		/* Enable scroll if needed */
+		background-color: #474e5d74;
+		padding-top: 50px;
+	}
+
+	/* Modal Content/Box */
+	.modal-content {
+		background-color: #fefefe;
+		margin: 5% auto 15% auto;
+		/* 5% from the top, 15% from the bottom and centered */
+		border: 1px solid #888;
+		width: fit-content;
+	}
+
+	/* Style the horizontal ruler */
+	/* The Modal Close Button (x) */
+	.close {
+		position: absolute;
+		right: 35px;
+		top: 15px;
+		font-size: 40px;
+		font-weight: bold;
+		color: #f1f1f1;
+
+
+	}
+</style>
+
+
+
+
+<script>
+	// Get the modal
+	var modal = document.getElementById('modal');
+
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function (event) {
+		if (event.target == modal) {
+			modal.style.display = "none";
+		}
+	}
+</script>
+
+<style>
+	.info-wrap {
+		margin-top: 12px;
+	}
+
+	.buttonss {
+		margin-top: 12px;
+	}
+</style>
+
+<style>
+	#snackbar {
+		visibility: hidden;
+		min-width: 250px;
+		margin-left: -125px;
+		background-color: #333;
+		color: #fff;
+		text-align: center;
+		border-radius: 2px;
+		padding: 16px;
+		position: fixed;
+		z-index: 1;
+		left: 50%;
+		bottom: 30px;
+		font-size: 17px;
+	}
+
+	#snackbar.show {
+		visibility: visible;
+		-webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+		animation: fadein 0.5s, fadeout 0.5s 2.5s;
+	}
+
+	@-webkit-keyframes fadein {
+		from {
+			bottom: 0;
+			opacity: 0;
+		}
+
+		to {
+			bottom: 30px;
+			opacity: 1;
+		}
+	}
+
+	@keyframes fadein {
+		from {
+			bottom: 0;
+			opacity: 0;
+		}
+
+		to {
+			bottom: 30px;
+			opacity: 1;
+		}
+	}
+
+	@-webkit-keyframes fadeout {
+		from {
+			bottom: 30px;
+			opacity: 1;
+		}
+
+		to {
+			bottom: 0;
+			opacity: 0;
+		}
+	}
+
+	@keyframes fadeout {
+		from {
+			bottom: 30px;
+			opacity: 1;
+		}
+
+		to {
+			bottom: 0;
+			opacity: 0;
+		}
+	}
+</style>
+
+<style>
+	#favsnackbar {
+		visibility: hidden;
+		min-width: 250px;
+		margin-left: -125px;
+		background-color: #333;
+		color: #fff;
+		text-align: center;
+		border-radius: 2px;
+		padding: 16px;
+		position: fixed;
+		z-index: 1;
+		left: 50%;
+		bottom: 30px;
+		font-size: 17px;
+	}
+
+	#favsnackbar.show1 {
+		visibility: visible;
+		-webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+		animation: fadein 0.5s, fadeout 0.5s 2.5s;
+	}
+
+	@-webkit-keyframes fadein {
+		from {
+			bottom: 0;
+			opacity: 0;
+		}
+
+		to {
+			bottom: 30px;
+			opacity: 1;
+		}
+	}
+
+	@keyframes fadein {
+		from {
+			bottom: 0;
+			opacity: 0;
+		}
+
+		to {
+			bottom: 30px;
+			opacity: 1;
+		}
+	}
+
+	@-webkit-keyframes fadeout {
+		from {
+			bottom: 30px;
+			opacity: 1;
+		}
+
+		to {
+			bottom: 0;
+			opacity: 0;
+		}
+	}
+
+	@keyframes fadeout {
+		from {
+			bottom: 30px;
+			opacity: 1;
+		}
+
+		to {
+			bottom: 0;
+			opacity: 0;
+		}
+	}
+</style>
+
+<style>
+	.mySlides {
+		display: none;
+	}
+</style>

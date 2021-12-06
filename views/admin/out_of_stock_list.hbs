@@ -1,0 +1,135 @@
+<div class="mobile-menu-overlay"></div>
+
+<div class="main-container">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="title">
+                            <h4>Total out of stock product</h4>
+                        </div>
+                        <nav aria-label="breadcrumb" role="navigation">
+                            <ol class="breadcrumb">
+
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="col-md-6 col-sm-12 text-right">
+                        <div class="dropdown">
+
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item" href="#">Export List</a>
+                                <a class="dropdown-item" href="#">Policies</a>
+                                <a class="dropdown-item" href="#">View Assets</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Simple Datatable start -->
+
+            <!-- Checkbox select Datatable End -->
+            <!-- Export Datatable start -->
+
+            <div class="card-box mb-30">
+            
+                <div class="pb-20" id="download">
+                    <table class="data-table-export table stripe  hover nowrap">
+                        <thead>
+                            <tr>
+                                <hr>
+                            </tr>
+                            <tr>
+                                <th class="table-plus datatable-nosort">No</th>
+                                <th>Product</th>
+                                <th>Date</th>
+                                <th>Name</th>
+
+                                <th>Price</th>
+                                <th>Brand</th>
+                                <th>Catagory</th>
+
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{#each outofstockproducts}}
+                            <tr>
+
+                                <td>{{add @index '1'}}</td>
+                                <td class="table-plus"><img style="width: 50px;height:50px"
+                                        src="/product_images/{{this._id}}__1.jpg"></td>
+                                <td>{{this.date}}</td>
+                                <td>{{this.name}}</td>
+                                <td>{{this.Price}}</td>
+                                <td>{{this.brand}}</td>
+                                <td>{{this.catagory}}</td>
+
+                            </tr>
+                            {{/each}}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Export Datatable End -->
+        </div>
+
+
+
+    </div>
+</div>
+<!-- js -->
+<script src="/vendors/scripts/core.js"></script>
+<script src="/vendors/scripts/script.min.js"></script>
+<script src="/vendors/scripts/process.js"></script>
+<script src="/vendors/scripts/layout-settings.js"></script>
+<script src="/src/plugins/datatables/js/jquery.dataTables.min.js"></script>
+<script src="/src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
+<script src="/src/plugins/datatables/js/dataTables.responsive.min.js"></script>
+<script src="/src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
+<!-- buttons for Export datatable -->
+<script src="/src/plugins/datatables/js/dataTables.buttons.min.js"></script>
+<script src="/src/plugins/datata bles/js/buttons.bootstrap4.min.js"></script>
+<script src="/src/plugins/datatables/js/buttons.print.min.js"></script>
+<script src="/src/plugins/datatables/js/buttons.html5.min.js"></script>
+<script src="/src/plugins/datatables/js/buttons.flash.min.js"></script>
+<script src="/src/plugins/datatables/js/pdfmake.min.js"></script>
+<script src="/src/plugins/datatables/js/vfs_fonts.js"></script>
+<!-- Datatable Setting js -->
+<script src="/vendors/scripts/datatable-setting.js"></script>
+
+
+
+{{!-- // pdf and xls making --}}
+
+{{!--
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.8.0/html2pdf.bundle.min.js"></script>
+<script src="//cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
+
+
+
+<script>
+    var element = document.getElementById('download');
+    function getReport() {
+
+        html2pdf(element);
+    }
+
+    function getspreadSheet() {
+        $(document).ready(function () {
+            $("#download").table2excel({
+                filename: "Order Report.xls"
+            });
+        });
+
+    }
+
+</script> --}}
+<style>
+    .align {
+        margin-bottom: -86px;
+    }
+</style>

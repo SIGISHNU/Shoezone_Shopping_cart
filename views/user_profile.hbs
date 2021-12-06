@@ -1,0 +1,433 @@
+<div class="container" style="justify-content: center;">
+
+    <div class="row container d-flex justify-content-center" style="width: fit-content">
+        <div class="col-xl-6 col-md-12 col-sm-12">
+            <div class="card user-card-full">
+                <div class="row m-l-0 m-r-0">
+
+
+
+                    <div class="container">
+                        <div class="">
+                            <div style="" class=" col-lg-6 col-sm-12 col-md-12">
+                                <form action="/profile" method="post" enctype="multipart/form-data">
+
+
+
+                                    {{#if userCurrentAddress}}
+
+
+
+                                    <div id="image-box" style="width: 200px; height: 200px; display: none;">
+                                    </div>
+                                    <button class="btn btn-primary mt-3" type="button" style="display: none;"
+                                        id="crop-btn">Crop</button>
+
+                                    <img src="/product_images/{{userCurrentAddress._id}}__1.jpg" alt=""
+                                        style="width: 100px; height:auto" id="imgview1">
+                                    {{!-- <div id="preview1"></div> --}}
+                                    <input style="width: auto;" type="file" name="image1" id="file1"
+                                        class="form-control" onchange="return fileValidation1()">
+                            </div>
+                        </div>
+
+
+                        <div class=" col-lg-6 col-sm-12 col-md-12" style="">
+                            <div class="">
+                                <h6 class="m-b-20 p-b-5 b-b-default f-w-600">Information</h6>
+                                <div class="row col-lg-8 col-sm-12 col-md-12">
+                                    <div style="width: 100%;" class="">
+                                        <p class="m-b-10 f-w-600">Name</p>
+                                        <input class="form-control" placeholder="name" name="name"
+                                            value="{{userCurrentAddress.name}}" readonly type="text">
+                                    </div>
+                                    <div style="width: 100%;" class="">
+                                        <p class="m-b-10 f-w-600">Email</p>
+                                        <input class="form-control" placeholder="email" name="email"
+                                            value="{{userCurrentAddress.email}}" type="email">
+                                    </div>
+                                    <div style="width: 100%;" class="">
+                                        <p class="m-b-10 f-w-600">Phone</p>
+                                        <input class="form-control" placeholder="mobile" name="mobile"
+                                            value="{{userCurrentAddress.mobile}}" type="text">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+
+
+                    </div><br>
+
+                    <div class="col-12" style="margin-left: 40px;">
+                        <button class="btn btn-success " id="confirm-btn" type="submit">Save
+                            changes</button>
+                        <a href="/add_address" class="btn btn-info">Add address</a>
+                    </div>
+
+                    </form>
+                </div>
+                <br>
+
+                {{/if}}
+
+
+                <div class="container">
+                    <div class="row">
+                        <div class="card bg-dark mb-3"></div>
+                        {{#each address}}
+                        <div class="col-md-4 col-sm-12">
+                            <div class="card-body">
+
+
+                                <h5 class="card-title" id="usernameid">{{this.name}}</h5>
+                                <h5 class="card-title" id="usermobileid">{{this.mobile}}</h5>
+                                <h5 class="card-title" id="useraddressid">{{this.address}}</h5>
+                                {{!-- <h5 class="card-title" id="userstateid">{{this.state}}
+                                </h5>
+                                <h5 class="card-title" id="userdistrictid">{{this.district}}
+                                </h5> --}}
+                                <h5 class="card-title" id="userpincodeid">{{this.pincode}}</h5>
+
+
+
+                            </div>
+                            {{!-- <a href="/delete_address/{{this._id}}" class="btn btn-danger">Delete</a>
+                            --}}
+                            <button class="btn btn-danger"
+                                onclick="document.getElementById('{{this._id}}11').style.display='flex'">Delete</button>
+
+                            <div id="{{this._id}}11" class="modal">
+                                <span onclick="document.getElementById('{{this._id}}11').style.display='none'"
+                                    class="close" title="Close Modal">&times;</span>
+                                <form class="modal-content" action="/profile">
+                                    <div class="container inside">
+                                        {{!-- <h1>Delete Account</h1> --}}
+                                        <p class="marginleft">Are you sure you want to delete
+                                            your account?
+                                        </p>
+
+                                        <div class="clearfix">
+                                            <a href="/profile" class="cancelbtn btn">Cancel</button>
+                                                <a href="/delete_address/{{this._id}}" type="btn-apply"
+                                                    class="deletebtn btn btn-danger">Delete</a>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <br>
+                            <br>
+                        </div>
+                        {{/each}}
+
+
+
+
+
+
+
+                        <ul class="social-link list-unstyled m-t-40 m-b-10">
+                            <li><a href="#!" data-toggle="tooltip" data-placement="bottom" title=""
+                                    data-original-title="facebook" data-abc="true"><i
+                                        class="mdi mdi-facebook feather icon-facebook facebook"
+                                        aria-hidden="true"></i></a>
+                            </li>
+                            <li><a href="#!" data-toggle="tooltip" data-placement="bottom" title=""
+                                    data-original-title="twitter" data-abc="true"><i
+                                        class="mdi mdi-twitter feather icon-twitter twitter" aria-hidden="true"></i></a>
+                            </li>
+                            <li><a href="#!" data-toggle="tooltip" data-placement="bottom" title=""
+                                    data-original-title="instagram" data-abc="true"><i
+                                        class="mdi mdi-instagram feather icon-instagram instagram"
+                                        aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.js"></script>
+<script>
+
+    function fileValidation1() {
+        const imagebox = document.getElementById('image-box')
+        const crop_btn = document.getElementById('crop-btn')
+        var fileInput = document.getElementById('file1');
+
+        var filePath = fileInput.value;
+        var allowedExtensions = /(\.jpg)$/i;
+        if (!allowedExtensions.exec(filePath)) {
+            alert('Please upload file having extensions .jpeg only.');
+            fileInput.value = '';
+            return false;
+        } else {
+            //Image preview
+            const img_data = fileInput.files[0]
+            const url = URL.createObjectURL(img_data)
+            imagebox.innerHTML = `<img src="${url}" id="image" style="width:100%">`
+            const image = document.getElementById('image')
+            document.getElementById('image-box').style.display = 'block'
+            document.getElementById('crop-btn').style.display = 'block'
+            document.getElementById('confirm-btn').style.display = 'none'
+
+            const cropper = new Cropper(image, {
+                autoCropArea: 1,
+                viewMode: 1,
+                scalable: false,
+                zoomable: false,
+                movable: false,
+                aspectRatio: 16 / 19,
+                //  preview: '.preview',
+                minCropBoxWidth: 180,
+                minCropBoxHeight: 240,
+            })
+            crop_btn.addEventListener('click', () => {
+                cropper.getCroppedCanvas().toBlob((blob) => {
+                    let fileInputElement = document.getElementById('file1');
+                    let file = new File([blob], img_data.name, { type: "image/*", lastModified: new Date().getTime() });
+                    let container = new DataTransfer();
+
+                    container.items.add(file);
+                    const img = container.files[0]
+                    var url = URL.createObjectURL(img)
+                    fileInputElement.files = container.files;
+                    document.getElementById('imgview1').src = url
+                    document.getElementById('image-box').style.display = 'none'
+                    document.getElementById('crop-btn').style.display = 'none'
+                    document.getElementById('confirm-btn').style.display = 'block'
+                });
+            });
+        }
+    }
+
+
+</script>
+
+
+{{!-- // modal --}}
+
+
+<style>
+    button:hover {
+        opacity: 1;
+    }
+
+    .btn {
+        margin-top: 8px;
+    }
+
+
+
+    .inside {
+        margin-top: 14px;
+    }
+
+    .marginleft {
+        margin-left: -11px;
+    }
+
+    .modal-content {
+        height: 122px;
+        max-width: 300px;
+    }
+
+    /* Float cancel and delete buttons and add an equal width */
+
+
+    /* Add a color to the cancel button */
+    .cancelbtn {
+        background-color: #ccc;
+        color: black;
+        width: 120px;
+        margin-left: 5px;
+    }
+
+    /* Add a color to the delete button */
+    .deletebtn {
+        background-color: #f44336;
+        width: 120px;
+        margin-left: 10px;
+    }
+
+
+
+    /* The Modal (background) */
+    .modal {
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        /* Stay in place */
+        z-index: 1;
+        /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%;
+        /* Full width */
+        height: 100vh;
+        /* Full height */
+        /* Enable scroll if needed */
+        background-color: #42444872;
+        padding-top: 50px;
+        align-items: center;
+    }
+
+    /* Modal Content/Box */
+    .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto 15% auto;
+        /* 5% from the top, 15% from the bottom and centered */
+        border: 1px solid #888;
+        /* Could be more or less, depending on screen size */
+
+    }
+
+
+    /* Style the horizontal ruler */
+    hr {
+        border: 1px solid #f1f1f1;
+        margin-bottom: 25px;
+    }
+
+    /* The Modal Close Button (x) */
+    .close {
+        position: absolute;
+        right: 35px;
+        top: 15px;
+        font-size: 40px;
+        font-weight: bold;
+        color: #f1f1f1;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #f44336;
+        cursor: pointer;
+    }
+
+    /* Clear floats */
+    .clearfix::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+    /* Change styles for cancel button and delete button on extra small screens */
+    @media screen and (max-width: 300px) {
+
+        .cancelbtn,
+        .deletebtn {
+            width: 100%;
+        }
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+<style>
+    /*Profile Pic Start*/
+    .picture-container {
+        position: relative;
+        cursor: pointer;
+        text-align: center;
+        margin-right: 931px;
+        margin-top: 80px;
+    }
+
+
+    .picture {
+        width: 106px;
+        height: 106px;
+        background-color: #999999;
+        border: 4px solid #CCCCCC;
+        color: #FFFFFF;
+        border-radius: 50%;
+        margin: 0px auto;
+        overflow: hidden;
+        transition: all 0.2s;
+        -webkit-transition: all 0.2s;
+    }
+
+    .picture:hover {
+        border-color: #2ca8ff;
+    }
+
+    .content.ct-wizard-green .picture:hover {
+        border-color: #05ae0e;
+    }
+
+    .content.ct-wizard-blue .picture:hover {
+        border-color: #3472f7;
+    }
+
+    .content.ct-wizard-orange .picture:hover {
+        border-color: #ff9500;
+    }
+
+    .content.ct-wizard-red .picture:hover {
+        border-color: #ff3b30;
+    }
+
+    .picture input[type="file"] {
+        cursor: pointer;
+        display: block;
+        height: 100%;
+        left: 0;
+        opacity: 0 !important;
+        position: absolute;
+        top: 0;
+        width: 100%;
+    }
+
+    .picture-src {
+        width: 100%;
+
+    }
+
+    /*Profile Pic End*/
+</style>
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700');
+
+    body {
+        background: url('http://all4desktop.com/data_images/original/4236532-background-images.jpg');
+        font-family: 'Roboto Condensed', sans-serif;
+        color: #262626;
+        margin: 5% 0;
+    }
+
+    @media (min-width: 1200px) {
+        .container {
+            max-width: 1140px;
+        }
+    }
+
+    .d-flex {
+        display: flex;
+        flex-direction: row;
+        background: #f6f6f6;
+        border-radius: 0 0 5px 5px;
+        padding: 25px;
+    }
+
+    .page-content {
+        margin-left: 92px
+    }
+</style>

@@ -1,0 +1,75 @@
+<div class="container container1">
+	<div class="screen">
+		<div class="screen__content " style="margin-top: -134px;">
+			<form class="login" action="/siginup_Otp_Verify" method="POST">
+				<img src="../images/logo4548.png" class="logo">
+				<div class="login__field">
+					<i class="login__icon fas fa-user"></i>
+					<input type="text" class="login__input" placeholder="OTP" name="otp">
+					<input type="hidden" value="{{mobile}}" name="mobile">
+				</div>
+
+				{{#if signupErr}}
+				<p style="color: red;">Invalid otp</p>
+				{{/if}}
+
+
+
+				<div id="counter"></div>
+				<button style="border: none;background-color: white; margin-top: 20px; color: rgb(145, 30, 30)"
+					id="resendButton" onclick="resendOTP('{{mobileNum}}')" type="button"
+					class="btn btn-outline-dark btn-lg px-5" disabled>Resend OTP</button>
+
+
+				<button type="submit" class="button login__submit">
+					<span class="button__text">Verify otp </span>
+					<i class="button__icon fas fa-chevron-right"></i>
+				</button>
+			</form>
+
+
+			<div class="social-login">
+				<div class="social-icons">
+					<a href="#" class="social-login__icon fab fa-instagram"></a>
+					<a href="#" class="social-login__icon fab fa-facebook"></a>
+					<a href="#" class="social-login__icon fab fa-twitter"></a>
+				</div>
+			</div>
+		</div>
+		<div class="screen__background">
+			<span class="screen__background__shape screen__background__shape3"></span>
+			<span class="screen__background__shape screen__background__shape2"></span>
+			<span class="screen__background__shape screen__background__shape1"></span>
+		</div>
+	</div>
+</div>
+
+
+
+<script>
+  var count = 10
+  function counter() {
+    document.getElementById("counter").innerHTML = `<span>Resend New OTP in: ${count}s</span>`
+    count = count - 1;
+    if (count >= 0) {
+      setTimeout(counter, 1000)
+    }else{
+		document.getElementById('counter').innerHTML = ''
+	}
+  }
+    
+  //How remove the disalbed attribute to a button
+  function setDisabled() {
+    
+    document.getElementById('resendButton').disabled = false
+  }
+  
+  window.onload = counter();
+  window.onload = function () {
+    window.setTimeout(setDisabled, 10000);
+  }
+  function resendOTP(mobileNum){
+    location.href = '/resend_OTP_signup_with_OTP'
+  }
+
+</script>

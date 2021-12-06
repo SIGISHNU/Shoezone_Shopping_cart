@@ -1,0 +1,49 @@
+<style>
+    .col-md-3 {
+        margin-top: 77px;
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="row">
+        {{#if cart}}
+        {{#each product}}
+
+        <div class=" col-md-3">
+            <div class="card card-product-grid">
+                <a class="img-wrap"> <img style="height: 277px;width: 276px;"
+                        src="/product_images/{{this.product._id}}__1.jpg"> </a>
+                <figcaption class="info-wrap mt-5">
+                    <a style="font-weight: bolder;" class="title">{{this.product.name}}</a><br>
+                    <a class="title">{{this.product.description}}</p>
+                        <p class="title">Quantity :{{this.product.quantity}}</p>
+                        {{!-- <div class="price mt-1">₹ {{this.product.Price}}<span
+                                style="padding-left: 10px; color: darkgray;">₹ <s>3000</s></span></div> --}}
+                        <!-- price-wrap.// -->
+                </figcaption>
+            </div>
+        </div>
+
+        {{/each}}
+        {{/if}}
+        {{#if buy_now}}
+        
+
+        <div class=" col-md-3">
+            <div class="card card-product-grid">
+                <a class="img-wrap"> <img style="height: 277px;width: 276px;"
+                        src="/product_images/{{buynow_product.proId}}__1.jpg"> </a>
+                <figcaption class="info-wrap mt-5">
+                    <a style="font-weight: bolder;" class="title">{{buynow_product.name}}</a><br>
+                    <a class="title">{{buynow_product.description}}</p>
+                        <p class="title">Quantity :{{buynow_product.quantity}}</p>
+                        <div class="price mt-1">₹ {{buynow_product.Price}}<span
+                                style="padding-left: 10px; color: darkgray;">₹ <s>3000</s></span></div>
+                        <!-- price-wrap.// -->
+                </figcaption>
+            </div>
+        </div>
+
+        {{/if}}
+    </div>
+</div>

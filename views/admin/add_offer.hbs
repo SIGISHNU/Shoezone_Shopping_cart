@@ -1,0 +1,142 @@
+<form class="add" action="/admin/add_offer" method="post">
+    <div class="form-group2">
+
+        <h3>Catagory offer</h3>
+        <br>
+
+
+
+        <div class="form-group mt-3">
+            <label>Category</label>
+            <select name="catagory" class="form-control">
+               
+                {{#each catagory}}
+                <option>{{this.catagory}}</option>
+                {{/each}}
+
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">offer name</label>
+            <input type="text" name="offername" class="form-control mt-2" placeholder="offer name">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">offer</label>
+            <input type="number" name="offer" class="form-control mt-2" placeholder="Enter offer percentage">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Expiry date</label>
+            <input type="date" name="date" class="form-control mt-2">
+        </div>
+
+
+
+        <button type="submit" class=" btn btn-success">Add offer</button>
+
+
+    </div>
+</form>
+
+<!-- Simple Datatable start -->
+<div class="card-box mb-30">
+    <div class="pd-20">
+        <strong>
+            <h2 class="text-blue h4">CATAGORY OFFER</h2>
+        </strong>
+    </div>
+    <div class="pb-20">
+        <table class="data-table table stripe hover nowrap">
+            <thead>
+                <tr>
+                    <th class="table-plus datatable-nosort">No</th>
+                    <th>Offer name</th>
+                    <th>Catagory</th>
+
+                    <th>Offer</th>
+                    <th>Expire date</th>
+                    <th></th>
+                    
+                  
+
+
+                </tr>
+            </thead>
+            <tbody>
+
+
+                {{#each catagoryOffer}}
+                <tr>
+
+                    <td>{{add @index '1'}}</td>
+                    <td>{{this.offername}}</td>
+
+                    <td>{{this.catagory}}</td>
+
+
+                    <td class="table-plus">{{this.offer}}</td>
+
+                    <td>{{this.date}}</td>
+                    
+                    <td><a href="/admin/delete_catagory_offer/{{this._id}}" class="btn btn-danger">Delete</a></td>
+                </tr>
+                {{/each}}
+
+
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Simple Datatable End -->
+
+
+<!-- js -->
+<script src="/vendors/scripts/core.js"></script>
+<script src="/vendors/scripts/script.min.js"></script>
+<script src="/vendors/scripts/process.js"></script>
+<script src="/vendors/scripts/layout-settings.js"></script>
+<script src="/src/plugins/datatables/js/jquery.dataTables.min.js"></script>
+<script src="/src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
+<script src="/src/plugins/datatables/js/dataTables.responsive.min.js"></script>
+<script src="/src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
+<!-- buttons for Export datatable -->
+<script src="/src/plugins/datatables/js/dataTables.buttons.min.js"></script>
+<script src="/src/plugins/datatables/js/buttons.bootstrap4.min.js"></script>
+<script src="/src/plugins/datatables/js/buttons.print.min.js"></script>
+<script src="/src/plugins/datatables/js/buttons.html5.min.js"></script>
+<script src="/src/plugins/datatables/js/buttons.flash.min.js"></script>
+<script src="/src/plugins/datatables/js/pdfmake.min.js"></script>
+<script src="/src/plugins/datatables/js/vfs_fonts.js"></script>
+<!-- Datatable Setting js -->
+<script src="/vendors/scripts/datatable-setting.js"></script>
+
+
+<style>
+    .card-box {
+        margin-left: 266px;
+        margin-top: 107px;
+        margin-right: 11px;
+    }
+</style>
+
+<style>
+    .form-group1 {
+
+        width: max-content;
+
+    }
+
+    .form-group2 {
+        margin-left: 330px;
+    }
+
+    .add {
+        margin-top: 106px;
+    }
+
+    .form-control {
+        width: 80%;
+    }
+</style>

@@ -1,0 +1,308 @@
+<!-- Default Basic Forms Start -->
+<div class="pd-20 card-box mb-30">
+    <div class="clearfix">
+        <div class="pull-left">
+            <h4 class="text-blue h4"></h4>
+        </div>
+
+    </div>
+
+
+    <form action="/admin/add_banner" enctype="multipart/form-data" method="POST" id="form_id">
+        <div class="form-group">
+            <label>Category</label>
+
+            <select name="catagory" class="form-control">
+                {{#each catagory}}
+                <option>{{this.catagory}}</option>
+                {{/each}}
+
+            </select>
+
+        </div>
+
+        <div class="col-12">
+            <div id="image-box" style="width: 500px; height: 500px; display: none;"></div>
+            <button class="btn btn-primary mt-3" type="button" style="display: none;" id="crop-btn">Crop</button>
+        </div>
+
+        <div class="mt-5">
+            <label for="">IMAGE </label>
+            <img src="" alt="" style="width: 100px; height:auto" id="imgview">
+            {{!-- <div id="preview1"></div> --}}
+            <input type="file" name="image" id="file" class="form-control" onchange="return fileValidation()">
+        </div>
+
+        <h6 id="not-img1-error" style="color: rgb(163, 24, 24);display: none;">!! Please upload a
+            image !!</h6>
+
+        <br>
+        <button id="confirm-btn" type="submit" class="btn btn-primary">Add banner</button><br>
+
+    </form>
+
+
+    <!-- Simple Datatable start -->
+    <br>
+    <br>
+    <div class="pb-20">
+        <table class="data-table table stripe hover nowrap">
+            <thead>
+                <tr>
+                    <hr>
+                </tr>
+                <tr>
+                    <th class="table-plus datatable-nosort">No</th>
+                    <th>Category</th>
+
+                    <th></th>
+
+
+
+
+                </tr>
+            </thead>
+            <tbody>
+                {{#each getAddedBanner}}
+                <tr>
+                    <td>{{add @index '1'}}</td>
+                    <td class="table-plus">{{this.catagory}}</td>
+
+                    <td><button class="btn btn-danger"
+                            onclick="document.getElementById('{{this._id}}11').style.display='block'">Delete</button>
+
+                        <div id="{{this._id}}11" class="modal">
+                            <span onclick="document.getElementById('{{this._id}}11').style.display='none'" class="close"
+                                title="Close Modal">&times;</span>
+                            <form class="modal-content " action="/admin/add_banner">
+                                <div class="container inside ">
+                                    {{!-- <h1>Delete Account</h1> --}}
+                                    <p style="color: black;" class="marginleft">Are you sure you want to delete your
+                                        account?</p>
+
+                                    <div class="clearfix">
+                                        <a href="/admin/add_banner" class="cancelbtn btn">Cancel</button>
+                                            <a class="btn btn-danger deletebtn" href="/admin/delete_Banner/{{this._id}}"
+                                                type="btn-apply">Delete</a>
+
+                                    </div>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+                {{/each}}
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Simple Datatable End -->
+
+
+<!-- js -->
+<script src="/vendors/scripts/core.js"></script>
+<script src="/vendors/scripts/script.min.js"></script>
+<script src="/vendors/scripts/process.js"></script>
+<script src="/vendors/scripts/layout-settings.js"></script>
+<script src="/src/plugins/datatables/js/jquery.dataTables.min.js"></script>
+<script src="/src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
+<script src="/src/plugins/datatables/js/dataTables.responsive.min.js"></script>
+<script src="/src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
+<!-- buttons for Export datatable -->
+<script src="/src/plugins/datatables/js/dataTables.buttons.min.js"></script>
+<script src="/src/plugins/datatables/js/buttons.bootstrap4.min.js"></script>
+<script src="/src/plugins/datatables/js/buttons.print.min.js"></script>
+<script src="/src/plugins/datatables/js/buttons.html5.min.js"></script>
+<script src="/src/plugins/datatables/js/buttons.flash.min.js"></script>
+<script src="/src/plugins/datatables/js/pdfmake.min.js"></script>
+<script src="/src/plugins/datatables/js/vfs_fonts.js"></script>
+<!-- Datatable Setting js -->
+<script src="/vendors/scripts/datatable-setting.js"></script>
+
+
+<style>
+    .card-box {
+        margin-left: 266px;
+        margin-top: 107px;
+        margin-right: 11px;
+    }
+</style>
+
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.11/cropper.js"></script>
+
+<script>
+
+    function fileValidation() {
+        const imagebox = document.getElementById('image-box')
+        const crop_btn = document.getElementById('crop-btn')
+        var fileInput = document.getElementById('file');
+
+        var filePath = fileInput.value;
+        var allowedExtensions = /(\.jpg)$/i;
+        if (!allowedExtensions.exec(filePath)) {
+            alert('Please upload file having extensions .jpeg only.');
+            fileInput.value = '';
+            return false;
+        } else {
+            //Image preview
+            const img_data = fileInput.files[0]
+            const url = URL.createObjectURL(img_data)
+            imagebox.innerHTML = `<img src="${url}" id="image" style="width:100%">`
+            const image = document.getElementById('image')
+            document.getElementById('image-box').style.display = 'block'
+            document.getElementById('crop-btn').style.display = 'block'
+            document.getElementById('confirm-btn').style.display = 'none'
+
+            const cropper = new Cropper(image, {
+                autoCropArea: 1,
+                viewMode: 1,
+                scalable: false,
+                zoomable: false,
+                movable: false,
+                aspectRatio: 30 / 19,
+                //  preview: '.preview',
+                minCropBoxWidth: 180,
+                minCropBoxHeight: 240,
+            })
+            crop_btn.addEventListener('click', () => {
+                cropper.getCroppedCanvas().toBlob((blob) => {
+                    let fileInputElement = document.getElementById('file');
+                    let file = new File([blob], img_data.name, { type: "image/*", lastModified: new Date().getTime() });
+                    let container = new DataTransfer();
+
+                    container.items.add(file);
+                    const img = container.files[0]
+                    var url = URL.createObjectURL(img)
+                    fileInputElement.files = container.files;
+                    document.getElementById('imgview').src = url
+                    document.getElementById('image-box').style.display = 'none'
+                    document.getElementById('crop-btn').style.display = 'none'
+                    document.getElementById('confirm-btn').style.display = 'block'
+                });
+            });
+        }
+    }
+
+
+</script>
+
+
+
+{{!-- // modal --}}
+
+
+<style>
+    button:hover {
+        opacity: 1;
+    }
+
+    .btn {
+        margin-top: 8px;
+    }
+
+    .marginleft {
+        margin-left: 78px;
+    }
+
+    .inside {
+        margin-top: 14px;
+    }
+
+    /* Float cancel and delete buttons and add an equal width */
+
+
+    /* Add a color to the cancel button */
+    .cancelbtn {
+        background-color: #ccc;
+        color: black;
+        width: 183px;
+        margin-left: 23px;
+    }
+
+    /* Add a color to the delete button */
+    .deletebtn {
+        background-color: #f44336;
+        width: 183px;
+        margin-left: 81px;
+    }
+
+
+
+    /* The Modal (background) */
+    .modal {
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        /* Stay in place */
+        z-index: 1;
+        /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%;
+        /* Full width */
+        height: 100%;
+        /* Full height */
+        overflow: auto;
+        /* Enable scroll if needed */
+        background-color: #42444872;
+        padding-top: 50px;
+    }
+
+    /* Modal Content/Box */
+    .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto 15% auto;
+        /* 5% from the top, 15% from the bottom and centered */
+        border: 1px solid #888;
+        /* Could be more or less, depending on screen size */
+        margin-left: 496px;
+        margin-top: 241px;
+        width: 40%;
+        height: 111px;
+    }
+
+
+    /* Style the horizontal ruler */
+    hr {
+        border: 1px solid #f1f1f1;
+        margin-bottom: 25px;
+    }
+
+    /* The Modal Close Button (x) */
+    .close {
+        position: absolute;
+        right: 35px;
+        top: 15px;
+        font-size: 40px;
+        font-weight: bold;
+        color: #f1f1f1;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #f44336;
+        cursor: pointer;
+    }
+
+    /* Clear floats */
+    .clearfix::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+    /* Change styles for cancel button and delete button on extra small screens */
+    @media screen and (max-width: 300px) {
+
+        .cancelbtn,
+        .deletebtn {
+            width: 100%;
+        }
+    }
+</style>

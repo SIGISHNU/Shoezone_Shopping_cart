@@ -1,0 +1,115 @@
+<!-- Simple Datatable start -->
+<div class="card-box mb-30">
+    <div class="pd-20">
+        <h4 class="text-blue h4">Manage Orders</h4>
+    </div>
+    <div class="pb-20">
+        <table class="data-table table stripe hover nowrap">
+            <thead>
+                <tr>
+                    <hr>
+                </tr>
+                <tr>
+                    <th class="table-plus datatable-nosort">No</th>
+                    <th>Date</th>
+
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Payment</th>
+                    {{!-- <th>Status
+                    <th> --}}
+                    <th></th>
+                    
+
+
+
+                </tr>
+            </thead>
+            <tbody>
+                {{#each allorders}}
+                <tr>
+                    <td>{{add @index '1'}}</td>
+                    <td class="table-plus">{{this.date}}</td>
+                    <td>{{this.delivaryDetails.name}}</td>
+
+                    <td>{{this.totalAmount}}</td>
+                    <td>{{this.paymentMethod}}</td>
+                    {{!-- <td>{{this.status}}</td> --}}
+                    <td>
+                        <div class="dropdown">
+
+                            <a href="/admin/order_details/{{this._id}}" class="btn btn-sm btn-danger dropdown-toggle"
+                                aria-haspopup="true" aria-expanded="false">Product details</button>
+                    </td>
+
+                    {{!-- <td>
+                        <div class="dropdown">
+
+                            <button class="btn btn-sm btn-secondary dropdown-toggle" type="button"
+                                id="dropdownMenuButton" aria-haspopup="true"
+                                aria-expanded="false">{{this.status}}</button>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
+                                <a class="dropdown-item bi"
+                                    href="/admin/change_order_status?orderId={{this._id}}&proId={{this.product._id}}&status=Placed"><i
+                                        class="dw "></i> Placed</a>
+                                <a class="dropdown-item bi"
+                                    href="/admin/change_order_status?orderId={{this._id}}&proId={{this.product._id}}&status=Shipped"><i
+                                        class="dw "></i> Shipped</a>
+                                <a class="dropdown-item bi"
+                                    href="/admin/change_order_status?orderId={{this._id}}&proId={{this.product._id}}&status=Pending"><i
+                                        class="dw "></i> Pending</a>
+                                <a class="dropdown-item bi"
+                                    href="/admin/change_order_status?orderId={{this._id}}&proId={{this.product._id}}&status=Returned"><i
+                                        class="dw "></i> Returned</a>
+                                <a class="dropdown-item"
+                                    href="/admin/change_order_status?orderId={{this._id}}&proId={{this.product._id}}&status=Delivered"><i
+                                        class="dw dw-delivered"></i> Delivered</a>
+                                <a class="dropdown-item"
+                                    href="/admin/change_order_status?orderId={{this._id}}&proId={{this.product._id}}&status=Cancelled"><i
+                                        class="dw dw-delivered"></i> Cancelled</a>
+                            </div>
+                        </div>
+                    </td> --}}
+
+                    </td>
+                  
+                    
+                </tr>
+                {{/each}}
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Simple Datatable End -->
+
+
+<!-- js -->
+<script src="/vendors/scripts/core.js"></script>
+<script src="/vendors/scripts/script.min.js"></script>
+<script src="/vendors/scripts/process.js"></script>
+<script src="/vendors/scripts/layout-settings.js"></script>
+<script src="/src/plugins/datatables/js/jquery.dataTables.min.js"></script>
+<script src="/src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
+<script src="/src/plugins/datatables/js/dataTables.responsive.min.js"></script>
+<script src="/src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
+<!-- buttons for Export datatable -->
+<script src="/src/plugins/datatables/js/dataTables.buttons.min.js"></script>
+<script src="/src/plugins/datatables/js/buttons.bootstrap4.min.js"></script>
+<script src="/src/plugins/datatables/js/buttons.print.min.js"></script>
+<script src="/src/plugins/datatables/js/buttons.html5.min.js"></script>
+<script src="/src/plugins/datatables/js/buttons.flash.min.js"></script>
+<script src="/src/plugins/datatables/js/pdfmake.min.js"></script>
+<script src="/src/plugins/datatables/js/vfs_fonts.js"></script>
+<!-- Datatable Setting js -->
+<script src="/vendors/scripts/datatable-setting.js"></script>
+
+
+<style>
+    .card-box {
+        margin-left: 266px;
+        margin-top: 107px;
+        margin-right: 11px;
+    }
+</style>

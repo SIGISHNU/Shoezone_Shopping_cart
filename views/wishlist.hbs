@@ -1,0 +1,577 @@
+<div class="">
+    <div class="Newariivals">
+        <br>
+        <center>
+            <img src="../images/fav.jpg" style="height: 120px;width: 251px;">
+        </center>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <div class="row">
+        {{#each fav}}
+
+        <div class=" col-md-3">
+
+
+            <div class="card card-product-grid" style="margin-top: 30px;">
+                <a href="/single_view/{{this._id}}" class="img-wrap"> <img style="height: 277px;width: 276px;"
+                        src="/product_images/{{this.favourite._id}}__1.jpg"> </a>
+                <figcaption class="info-wrap mt-5">
+
+                    <a style="font-weight: bolder;" href="../single_view.hbs" class="title ">{{this.favourite.name}}</a>
+                    <a href="../single_view.hbs" class="title">{{this.favourite.discription}}</a>
+                    {{#gt this.favourite.quantity '0'}}
+                    <p class="glyphicon glyphicon-leaf" style="color: green;     margin-left: 14px;">in stock</p>
+
+                    {{else}}
+                    <p class="glyphicon glyphicon-leaf" style="color: rgb(221, 17, 17);     margin-left: 14px;">out of
+                        stock</p>
+                    {{/gt}}
+                    <br>
+                    {{!-- <button class="btn-Link" onclick="favlist('{{this._id}}')"><svg
+                            style="color: red;margin-left: 11px;margin-top: -2px;width: 16px;"
+                            xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                            class="bi bi-heart-fill" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z" />
+                        </svg></button>
+            </div> --}}
+            <br>
+            {{#if this.favourite.offer}}
+            <div class="price" style="margin-top: -18px;">₹ {{this.favourite.Price}} <span
+                    style="padding-left: 10px; color: darkgray;">₹
+                    <s class="ml">{{this.favourite.Oldprice}}</s></span><span
+                    style="color: green; color: green; margin-left: 17px;border: inset;">{{this.favourite.offer}} %
+                </span>
+                {{else}}
+                <div class="price" style="margin-top: -18px;">₹ {{this.favourite.Price}} <span
+                        style="padding-left: 10px; color: darkgray;">₹
+                        <s class="ml">3000</s></span>
+
+                    {{/if}}
+                    <br>
+                    <br>
+                    <!-- price-wrap.// -->
+
+
+                    <div class="buttonss">
+                        {{#gt this.favourite.quantity "0"}}
+                        <a style="" class="btn btn-success" href="/buy_now/{{this._id}}">Buy Now</a>
+                        <a onclick="document.getElementById('{{this._id}}11').style.display='block'"
+                            class="btn btn-danger"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                <path
+                                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                <path fill-rule="evenodd"
+                                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                            </svg>
+                        </a>
+
+                        <div id="{{this._id}}11" class="modal1">
+                            <span onclick="document.getElementById('{{this._id}}11').style.display='none'" class="close"
+                                title="Close Modal">&times;</span>
+                            <form class="modal-content1 " action="/wishlist">
+                                <div class="container inside1 ">
+                                    {{!-- <h1>Delete Account</h1> --}}
+                                    <p style="color: black;" class="marginleft1">Are you sure you want to remove ?</p>
+
+                                    <div class="clearfix">
+                                        <a href="/wishlist" class="cancelbtn1 btn " style="color: #f1f1f1;">Cancel</a>
+                                        <a href="/delete_wishlist_product/{{this._id}}" class="btn deletebtn1 btn-apply"
+                                            style="color: #f1f1f1;">Remove</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        {{else}}
+                        <a style="" class="btn btn-success"
+                            onclick="document.getElementById('modal').style.display='block'">Buy Now</a>
+
+                        <div id="modal" style="align-items: center;" class="modal">
+                            <span onclick="document.getElementById('modal').style.display='none'" class="close"
+                                title="Close Modal">&times;</span>
+                            <form class="modal-content" action="/">
+                                <div class="container">
+                                    {{!-- <h1>Delete Account</h1> --}}
+                                    <h4 class="text">!!! This item is out of stock !!!</h4>
+
+                                    <div class="clearfix">
+
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+
+                        <a onclick="document.getElementById('{{this._id}}11').style.display='block'"
+                            class="btn btn-danger"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                <path
+                                    d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                                <path fill-rule="evenodd"
+                                    d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                            </svg>
+                        </a>
+
+                        <div id="{{this._id}}11" class="modal1">
+                            <span onclick="document.getElementById('{{this._id}}11').style.display='none'" class="close"
+                                title="Close Modal">&times;</span>
+                            <form class="modal-content1 " action="/wishlist">
+                                <div class="container inside1 ">
+                                    {{!-- <h1>Delete Account</h1> --}}
+                                    <p style="color: black;" class="marginleft1">Are you sure you want to remove ?</p>
+
+                                    <div class="clearfix">
+                                        <a href="/wishlist" class="cancelbtn1 btn " style="color: #f1f1f1;">Cancel</a>
+                                        <a href="/delete_wishlist_product/{{this._id}}" class="btn deletebtn1 btn-apply"
+                                            style="color: #f1f1f1;">Remove</a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        {{/gt}}
+
+                        {{!-- <button onclick="addToCart('{{this._id}}','{{this.Price}}'),myFunction()"
+                            class="btn btn-primary">Add to
+                            Cart</button> --}}
+                        {{#gt this.favourite.quantity "0"}}
+                        {{#viewcartbutton ../product this.favourite._id this.favourite.Price }}
+                        {{/viewcartbutton}}
+                        {{else}}
+                        <a style="" class="btn btn-primary"
+                            onclick="document.getElementById('modal').style.display='block'">Add to Cart</a>
+
+                        <div id="modal" style="align-items: center;" class="modal">
+                            <span onclick="document.getElementById('modal').style.display='none'" class="close"
+                                title="Close Modal">&times;</span>
+                            <form class="modal-content" action="/">
+                                <div class="container">
+                                    {{!-- <h1>Delete Account</h1> --}}
+                                    <h4 class="text">!!! This item is out of stock !!!</h4>
+
+                                    <div class="clearfix">
+
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+
+
+
+                        {{/gt}}
+
+                    </div>
+                    </figcaption>
+                </div>
+
+
+            </div>
+
+            {{/each}}
+            <div id="snackbar">Item added to cart..</div>
+            <div id="favsnackbar">Item removed from wishlist...</div>
+
+        </div>
+
+    </div>
+
+
+
+
+    <script>
+
+        function addToCart(proId, Price) {
+            $.ajax({
+                url: '/add_cart/' + proId + '/' + Price,
+                method: 'get',
+                success: (response) => {
+                    if (response.status) {
+                        let count = $('#cart_count').html()
+                        count = parseInt(count) + 1
+                        $("#cart_count").html(count)
+
+
+
+
+                    }
+
+
+
+                }
+            })
+        }
+
+    </script>
+
+
+    <script>
+        function myFunction() {
+            var x = document.getElementById("snackbar");
+            x.className = "show";
+            setTimeout(function () {
+                x.className = x.className.replace("show", "");
+            }, 3000);
+
+
+
+        }
+    </script>
+    <script>
+        function myFunction1() {
+            var x = document.getElementById("favsnackbar");
+            x.className = "show";
+            setTimeout(function () {
+                x.className = x.className.replace("show", "");
+            }, 3000);
+
+
+
+        }
+    </script>
+
+
+    {{!-- //snackbar --}}
+
+
+    <style>
+        #snackbar {
+            visibility: hidden;
+            min-width: 250px;
+            margin-left: -125px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 2px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
+            bottom: 30px;
+            font-size: 17px;
+        }
+
+        #snackbar.show {
+            visibility: visible;
+            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+
+        @-webkit-keyframes fadein {
+            from {
+                bottom: 0;
+                opacity: 0;
+            }
+
+            to {
+                bottom: 30px;
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadein {
+            from {
+                bottom: 0;
+                opacity: 0;
+            }
+
+            to {
+                bottom: 30px;
+                opacity: 1;
+            }
+        }
+
+        @-webkit-keyframes fadeout {
+            from {
+                bottom: 30px;
+                opacity: 1;
+            }
+
+            to {
+                bottom: 0;
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeout {
+            from {
+                bottom: 30px;
+                opacity: 1;
+            }
+
+            to {
+                bottom: 0;
+                opacity: 0;
+            }
+        }
+    </style>
+    <style>
+        #favsnackbar {
+            visibility: hidden;
+            min-width: 250px;
+            margin-left: -125px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 2px;
+            padding: 16px;
+            position: fixed;
+            z-index: 1;
+            left: 50%;
+            bottom: 30px;
+            font-size: 17px;
+        }
+
+        #favsnackbar.show {
+            visibility: visible;
+            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+
+        @-webkit-keyframes fadein {
+            from {
+                bottom: 0;
+                opacity: 0;
+            }
+
+            to {
+                bottom: 30px;
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadein {
+            from {
+                bottom: 0;
+                opacity: 0;
+            }
+
+            to {
+                bottom: 30px;
+                opacity: 1;
+            }
+        }
+
+        @-webkit-keyframes fadeout {
+            from {
+                bottom: 30px;
+                opacity: 1;
+            }
+
+            to {
+                bottom: 0;
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeout {
+            from {
+                bottom: 30px;
+                opacity: 1;
+            }
+
+            to {
+                bottom: 0;
+                opacity: 0;
+            }
+        }
+    </style>
+
+
+    {{!-- // modal --}}
+
+
+    <style>
+        button:hover {
+            opacity: 1;
+        }
+
+        .btn {
+            margin-top: 8px;
+        }
+
+
+
+        .inside1 {
+            margin-top: 14px;
+        }
+
+        .modal-content1 {
+            height: 122px;
+            max-width: 300px;
+        }
+
+        /* Float cancel and delete buttons and add an equal width */
+
+
+        /* Add a color to the cancel button */
+        .cancelbtn1 {
+            background-color: #ccc;
+            color: black;
+            width: 120px;
+            margin-left: 5px;
+        }
+
+        /* Add a color to the delete button */
+        .deletebtn1 {
+            background-color: #f44336;
+            width: 120px;
+            margin-left: 10px;
+        }
+
+
+
+        /* The Modal (background) */
+        .modal1 {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100vh;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: #42444872;
+            padding-top: 50px;
+        }
+
+        /* Modal Content/Box */
+        .modal-content1 {
+            background-color: #fefefe;
+            margin: 5% auto 15% auto;
+            /* 5% from the top, 15% from the bottom and centered */
+            border: 1px solid #888;
+            /* Could be more or less, depending on screen size */
+
+        }
+
+
+        /* Style the horizontal ruler */
+        hr {
+            border: 1px solid #f1f1f1;
+            margin-bottom: 25px;
+        }
+
+        /* The Modal Close Button (x) */
+        .close {
+            position: absolute;
+            right: 35px;
+            top: 15px;
+            font-size: 40px;
+            font-weight: bold;
+            color: #f1f1f1;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #f44336;
+            cursor: pointer;
+        }
+
+        /* Clear floats */
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        /* Change styles for cancel button and delete button on extra small screens */
+        @media screen and (max-width: 300px) {
+
+            .cancelbtn1,
+            .deletebtn1 {
+                width: 100%;
+            }
+        }
+    </style>
+
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById('modal');
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+
+
+
+
+
+    <style>
+        /* The Modal (background) */
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100vh;
+            /* Full height */
+            /* Enable scroll if needed */
+            background-color: #474e5d74;
+            padding-top: 50px;
+        }
+
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto 15% auto;
+            /* 5% from the top, 15% from the bottom and centered */
+            border: 1px solid #888;
+            width: fit-content;
+            margin-top: 230px;
+
+        }
+
+        /* Style the horizontal ruler */
+
+        /* The Modal Close Button (x) */
+        .close {
+            position: absolute;
+            right: 35px;
+            top: 15px;
+            font-size: 40px;
+            font-weight: bold;
+            color: #f1f1f1;
+        }
+    </style>
+
+
+
+
+
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById('modal');
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>

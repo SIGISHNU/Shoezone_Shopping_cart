@@ -1,0 +1,41 @@
+<div class="container container1">
+	<div class="screen">
+		<div class="screen__content " style="margin-top: -134px;">
+			<form class="login" action="/forgotmobile" method="POST" id="form_id">
+				<img src="../images/logo4548.png" class="logo">
+				<div class="login__field">
+					<i class="login__icon fas fa-user"></i>
+					<input type="text" class="login__input" placeholder="Mobile" name="mobile">
+				</div>
+				{{#if mobNumCheckingErr}}
+				<p style="color: red;">Invalid mobile number</p>
+				{{/if}}
+			
+				
+
+
+
+
+				<button type="submit" class="button login__submit">
+					<span class="button__text">Verify otp </span>
+					<i class="button__icon fas fa-chevron-right"></i>
+				</button>
+			</form>
+
+
+			<div class="social-login">
+				<div class="social-icons">
+					<a href="#" class="social-login__icon fab fa-instagram"></a>
+					<a href="#" class="social-login__icon fab fa-facebook"></a>
+					<a href="#" class="social-login__icon fab fa-twitter"></a>
+				</div>
+			</div>
+		</div>
+		<div class="screen__background">
+			{{!-- <span class="screen__background__shape screen__background__shape4"></span> --}}
+			<span class="screen__background__shape screen__background__shape3"></span>
+			<span class="screen__background__shape screen__background__shape2"></span>
+			<span class="screen__background__shape screen__background__shape1"></span>
+		</div>
+	</div>
+</div>

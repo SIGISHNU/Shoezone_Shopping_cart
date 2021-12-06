@@ -1,0 +1,238 @@
+<div class="mobile-menu-overlay"></div>
+
+<div class="main-container">
+    <div class="pd-ltr-20 xs-pd-20-10">
+        <div class="min-height-200px">
+            <div class="page-header">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="title">
+                            <h4>View Product</h4>
+                        </div>
+                        <nav aria-label="breadcrumb" role="navigation">
+                            <ol class="breadcrumb">
+
+                            </ol>
+                        </nav>
+                    </div>
+                    <div class="col-md-6 col-sm-12 text-right">
+                        <div class="dropdown">
+
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item" href="#">Export List</a>
+                                <a class="dropdown-item" href="#">Policies</a>
+                                <a class="dropdown-item" href="#">View Assets</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Simple Datatable start -->
+
+            <!-- Checkbox select Datatable End -->
+            <!-- Export Datatable start -->
+            <div class="card-box mb-30">
+                <div class="pb-20">
+
+                    <table class="table hover multiple-select-row data-table-export nowrap">
+                        <center>
+                            <br><br>
+                            <a href="/admin/add_brand" class="btn btn-success">Add Brand</a>
+                            <a href="/admin/add_product" class="btn btn-success">Add product</a>
+
+                        </center>
+                        <thead>
+
+                            <tr>
+                                <th>No</th>
+                                
+                                <th>Name</th>
+                                <th></th>
+                                <th></th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            <tr>
+                                {{#each brand}}
+                                
+                                <td>{{add @index '1'}}</td>
+                            
+                                <td>{{this.brand}}</td>
+                                {{!-- <td><a href="/admin/catagory/{{this._id}}" class="btn btn-danger">Remove</a></td> --}}
+
+                                <td><button class="btn btn-danger"
+                                            onclick="document.getElementById('{{this._id}}11').style.display='block'">Delete</button>
+
+                                        <div id="{{this._id}}11" class="modal">
+                                            <span
+                                                onclick="document.getElementById('{{this._id}}11').style.display='none'"
+                                                class="close" title="Close Modal">&times;</span>
+                                            <form class="modal-content" action="/profile">
+                                                <div class="container inside">
+                                                    {{!-- <h1>Delete Account</h1> --}}
+                                                    <p class="marginleft" style="color: black;">Are you sure you want to delete your account?
+                                                    </p>
+
+                                                    <div class="clearfix">
+                                                        <a href="/admin/view_brand" class="cancelbtn btn">Cancel</button>
+                                                            <a href="/admin/brand/{{this._id}}" type="btn-apply"
+                                                                class="deletebtn btn btn-danger">Delete</a>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div></td> 
+                                        <td></td>
+                               
+                            </tr>
+                            {{/each}}
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- Export Datatable End -->
+        </div>
+
+
+
+    </div>
+</div>
+<!-- js -->
+<script src="/vendors/scripts/core.js"></script>
+<script src="/vendors/scripts/script.min.js"></script>
+<script src="/vendors/scripts/process.js"></script>
+<script src="/vendors/scripts/layout-settings.js"></script>
+<script src="/src/plugins/datatables/js/jquery.dataTables.min.js"></script>
+<script src="/src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
+<script src="/src/plugins/datatables/js/dataTables.responsive.min.js"></script>
+<script src="/src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
+<!-- buttons for Export datatable -->
+<script src="/vendors/scripts/datatable-setting.js"></script>
+
+
+
+
+
+
+
+
+
+{{!-- // modal --}}
+
+
+    <style>
+        button:hover {
+            opacity: 1;
+        }
+
+        .btn {
+            margin-top: 8px;
+        }
+
+        .marginleft {
+            margin-left: 78px;
+        }
+
+        .inside {
+            margin-top: 14px;
+        }
+
+        /* Float cancel and delete buttons and add an equal width */
+
+
+        /* Add a color to the cancel button */
+        .cancelbtn {
+            background-color: #ccc;
+            color: black;
+            width: 183px;
+            margin-left: 23px;
+        }
+
+        /* Add a color to the delete button */
+        .deletebtn {
+            background-color: #f44336;
+            width: 183px;
+            margin-left: 81px;
+        }
+
+
+
+        /* The Modal (background) */
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: #42444872;
+            padding-top: 50px;
+        }
+
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto 15% auto;
+            /* 5% from the top, 15% from the bottom and centered */
+            border: 1px solid #888;
+            /* Could be more or less, depending on screen size */
+            margin-left: 496px;
+            margin-top: 241px;
+            width: 40%;
+            height: 111px;
+        }
+
+        /* Style the horizontal ruler */
+        hr {
+            border: 1px solid #f1f1f1;
+            margin-bottom: 25px;
+        }
+
+        /* The Modal Close Button (x) */
+        .close {
+            position: absolute;
+            right: 35px;
+            top: 15px;
+            font-size: 40px;
+            font-weight: bold;
+            color: #f1f1f1;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #f44336;
+            cursor: pointer;
+        }
+
+        /* Clear floats */
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        /* Change styles for cancel button and delete button on extra small screens */
+        @media screen and (max-width: 300px) {
+
+            .cancelbtn,
+            .deletebtn {
+                width: 100%;
+            }
+        }
+    </style>
+
+
+
+
+
+
