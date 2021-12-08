@@ -109,6 +109,10 @@
                             <button class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" type="button"
                                 id="dropdownMenuButton" aria-haspopup="true"
                                 aria-expanded="false">{{this.status}}</button>
+                                {{#eq this.status 'Cancelled'}}
+                                {{else}}
+                                {{#eq this.status 'Delivered'}}
+                                {{else}}
                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                 <a class="dropdown-item "
                                     href="/admin/change_order_status?orderId={{../this._id}}&proId={{this.item}}&status=Placed"><i></i>
@@ -129,6 +133,8 @@
                                     href="/admin/change_order_status?orderId={{../this._id}}&proId={{this.item}}&status=Cancelled"><i></i>
                                     Cancelled</a>
                             </div>
+                            {{/eq}}
+                            {{/eq}}
                         </div>
                     </td>
                 </tr>
@@ -152,6 +158,10 @@
                             <button class="btn btn-sm btn-primary dropdown-toggle" data-toggle="dropdown" type="button"
                                 id="dropdownMenuButton" aria-haspopup="true"
                                 aria-expanded="false">{{this.status}}</button>
+                                 {{#eq this.status 'Cancelled'}}
+                                {{else}}
+                                {{#eq this.status 'Delivered'}}
+                                {{else}}
                             <div class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list">
                                 <a class="dropdown-item "
                                     href="/admin/change_order_status?orderId={{this._id}}&proId={{this.proId}}&status=Placed"><i></i>
@@ -169,6 +179,8 @@
                                     href="/admin/change_order_status?orderId={{this._id}}&proId={{this.proId}}&status=Cancelled"><i></i>
                                     Cancelled</a>
                             </div>
+                            {{/eq}}
+                            {{/eq}}
                         </div>
 
                     </td>

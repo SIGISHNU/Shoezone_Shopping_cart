@@ -6,7 +6,7 @@ const state = {
 }
 
 module.exports.connect = function (done) {
-    const url = process.env.MONGODB_URL
+    const url = 'mongodb://localhost:27017'
     const dbname = 'addproduct'
 
 

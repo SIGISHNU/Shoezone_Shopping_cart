@@ -1,23 +1,21 @@
-
-
-<div class="container" >
-     <div class="title">
+<div class="container">
+  <div class="title">
     <h2 style="display: flex;justify-content: ;">Product Order Form</h2>
   </div>
-  <div class="d-flex" >
-    <form id="checkout-form"  style="width: fit-content;" >
-   
+  <div class="d-flex">
+    <form id="checkout-form" style="width: fit-content;">
+
       <div class="col-md-8 col-lg-8 col-sm-12">
-        <label >
+        <label>
           <span class="name1">Name <span class="required">*</span></span>
           <input type="text" name="name" id="nameid" style="height: 41px;">
         </label>
-        <label >
+        <label>
           <span>Address <span class="required1">*</span></span>
           <input type="text" name="address" id="addressid" placeholder="House number and street name"
             style=" height: 41px;">
         </label>
-        <label >
+        <label>
           <span>Country <span class="required1">*</span></span>
           <select name="country" id="countryid" style=" height: 41px;">
             <option value="select">Select a country...</option>
@@ -292,13 +290,12 @@
           </select>
         </label>
 
-        <label >
+        <label>
           <span>Mobile <span class="required1">*</span></span>
-          <input type="number" name="mobile" id="mobileid" placeholder="mobile Number"
-            style=" height: 41px;">
+          <input type="number" name="mobile" id="mobileid" placeholder="mobile Number" style=" height: 41px;">
         </label>
 
-        <label >
+        <label>
           <span>Pincode <span class="required">*</span></span>
           <input type="number" id="pincodeid" name="pincode" placeholder="pincode" style=" height: 41px;">
         </label>
@@ -349,26 +346,29 @@
 
 
           <div class="form-group payment1">
-            <input type="radio" name="paymentmethod" value="COD" id="payementChoiceCod"> Cash on Delivery
+            <input type="radio" name="paymentmethod" onclick="Displayplaceorderbutton()" value="COD"
+              id="payementChoiceCod"> Cash on Delivery
           </div>
           <div class="form-group payment1">
-            <input type="radio" name="paymentmethod" value="RAZOR PAY" id="payementChoiceRazor"> Razorpay <span>
+            <input type="radio" name="paymentmethod" onclick="Displayplaceorderbutton()" value="RAZOR PAY"
+              id="payementChoiceRazor"> Razorpay <span>
               <img src="https://www.logolynx.com/images/logolynx/c3/c36093ca9fb6c250f74d319550acac4d.jpeg" alt=""
                 width="50">
             </span>
           </div>
           <div class="form-group payment1">
-            <input type="radio" name="paymentmethod" value="PAY PAL" id="payementChoicePay"> Paypal <span>
+            <input type="radio" name="paymentmethod" onclick="Displaypaypalbutton()" value="PAY PAL"
+              id="payementChoicePay"> Paypal <span>
               <img src="https://www.logolynx.com/images/logolynx/c3/c36093ca9fb6c250f74d319550acac4d.jpeg" alt=""
                 width="50">
             </span>
           </div>
-          <div id="paypal-button"></div>
+          <div id="paypal-button" style="mt-5" ></div>
           <br>
 
 
-          <a href="/" class="btn btn-out btn-primary btn-square btn-main home" data-abc="true">Back Home</a>
-          <button class="btn btn-out btn-success btn-square btn-main mt-2 placeorder" data-abc="true"
+          <a href="/" id="homebutton" class="btn btn-out btn-primary btn-square btn-main home" data-abc="true">Back Home</a>
+          <button id="placeorderbutton" class="btn btn-success btn-square btn-main mt-2 placeorder" data-abc="true"
             type="submit" style="width: 173px;">Place
             order</button>
         </div><!-- Yorder -->
@@ -409,14 +409,27 @@
   }
 </script>
 
+<script>
+  function Displayplaceorderbutton() {
+    document.getElementById('placeorderbutton').style.display = 'block'
+    document.getElementById('homebutton').style.display = 'block'
+    document.getElementById('paypal-button').innerHTML = ''
+  }
+
+</script>
+
+<script>
+  function Displaypaypalbutton() {
+
+    document.getElementById('paypal-button').innerHTML = ''
+
+
+  }
+</script>
+
 
 
 <script>
-
-
-
-
-
 
   function razorpayPaymaent(order) {
     var options = {
@@ -622,6 +635,9 @@
             }
 
           }, '#paypal-button');
+
+          document.getElementById('placeorderbutton').style.display = 'none'
+          document.getElementById('homebutton').style.display = 'none'
         }
         else {
           $.ajax({
